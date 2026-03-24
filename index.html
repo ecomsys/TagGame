@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <!-- MOBILE VIEWPORT -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />    
+
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        (function forceDesktopLayout() {
+          const BREAKPOINT = 1536;
+          const DESIGN_WIDTH = 1536;
+
+          const screenWidth = window.screen.width;
+          const dpr = window.devicePixelRatio || 1;
+          const realWidth = screenWidth / dpr;
+
+          const meta = document.querySelector('meta[name="viewport"]');
+          if (!meta) return;
+
+          if (realWidth < BREAKPOINT) {
+            meta.setAttribute("content", "width=device-width, initial-scale=1");
+            console.log("adaptive mode:", realWidth);
+            return;
+          }
+
+          const scale = realWidth / DESIGN_WIDTH;
+
+          meta.setAttribute(
+            "content",
+            `width=${DESIGN_WIDTH}, initial-scale=${scale}, maximum-scale=${scale}, user-scalable=no`,
+          );
+
+          console.log("forced 1920 mode:", { realWidth, scale });
+        })();
+      });
+    </script>
+
+    <!-- ОСНОВНОЙ SEO --> 
+     <title>Пятнашка от EcomSys</title>
+    <meta name="description" content="Игра в пятнашки" />
+    <meta name="keywords" content="Пятнашка, Tag Game" />
+    <meta name="author" content="EcomSys" />
+    <meta name="robots" content="index, follow" />
+    
+  </head>
+
+  <body class="min-h-screen">
+    <div id="root"></div>
+
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
