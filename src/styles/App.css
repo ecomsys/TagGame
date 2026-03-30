@@ -1,10 +1,5 @@
 /* в src/index.css */
 
-body {  
-  background: url('/images/app-bg.webp') center center no-repeat;
-  background-size: cover;
-}
-
 .null-container {
   flex-grow: 1;
   width: 100%;

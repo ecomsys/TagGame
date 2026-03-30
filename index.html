@@ -112,8 +112,11 @@
     <link rel="manifest" href="/games/taggame/manifest.json" />
   </head>
 
-  <body class="min-h-screen">
-    <div id="root"></div>
+   <body class="m-0 bg-[#7bad89]">
+    <div class="fixed inset-0 ">
+      <img src="/images/app-bg.webp" class="w-full h-full object-cover" />
+    </div>
+    <div id="root" class="h-[100dvh] overflow-y-auto relative z-1"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

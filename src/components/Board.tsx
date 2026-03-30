@@ -72,7 +72,7 @@ const Board: FC<BoardProps> = ({ tiles, onMove, isGameOver }) => {
 
   return (
     <div
-      className="relative rounded-xl p-5 aspect-square max-w-[76vh] mx-auto"
+      className="relative rounded-xl w-full aspect-square max-w-[34.5rem] mx-auto"
     >
       {[...Array(16)].map((_, i) => {
         const tileValue = i === 15 ? null : i + 1;

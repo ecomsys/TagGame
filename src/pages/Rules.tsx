@@ -26,7 +26,7 @@ export default function Rules() {
   const buttonTeal = "bg-gradient-to-br from-teal-500 via-teal-600 to-teal-700 text-white hover:scale-105 active:translate-y-[0.0625rem]";
 
   return (
-    <div className="flex flex-col gap-8 px-4 py-8 bg-teal-50/10 items-center w-full">
+    <div className="flex flex-col gap-8 px-2.5 pt-8 pb-16 bg-teal-50/10 items-center min-w-[20rem]">
 
         {/* Кнопка "Вернуться в игру" */}
       <button

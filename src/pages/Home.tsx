@@ -5,7 +5,7 @@ export default function Home() {
   const navigate = useNavigate();
 
   const baseBtn =
-    "font-[Montserrat] font-bold text-[1.25rem] w-[60%] max-w-xs py-4 rounded-2xl transition-all duration-200";
+    "font-[Montserrat] cursor-pointer font-bold text-[1rem] xs:text-[1.25rem] w-full sm:w-[initial] xs:max-w-xs px-10 py-4 rounded-2xl transition-all duration-200";
 
   const tealBtn = `
     bg-gradient-to-br from-teal-500 via-teal-600 to-teal-700
@@ -16,14 +16,14 @@ export default function Home() {
   `;
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center gap-8 px-4 ">
+    <div className="mt-36 sm:mt-0 h-full sm:h-[100dvh] flex flex-col items-center justify-center px-2.5 relative min-w-[20rem]">
 
-      {/* на игровой портал */}
+      {/* КНОПКА НАЗАД (fixed) */}
       <a
         href="https://games.ecomsys.ru"
         className="
           cursor-pointer
-          fixed top-4 xs:top-8 left-8
+          fixed top-4 sm:top-8 left-2.5 sm:left-8
           w-[5rem] h-[5rem]
           rounded-full
           flex items-center justify-center
@@ -41,26 +41,29 @@ export default function Home() {
       </a>
 
       {/* Заголовок */}
-      <h1 className="text-6xl md:text-7xl font-extrabold text-teal-800 text-center leading-tight">
-        Пятнашки
-      </h1>
+      <div className="flex flex-col gap-4 items-center ">
+        <h1 className="text-5xl xs:text-6xl md:text-7xl font-extrabold text-teal-800 text-center leading-[1] uppercase">
+          Пятнашки
+        </h1>
 
-      {/* Подзаголовок / описание */}
-      <p className="text-2xl md:text-3xl font-semibold text-teal-900 text-center max-w-3xl">
-        Добро пожаловать! Соберите все плитки по порядку, используя логику и стратегию.
-        Попробуйте собрать их за минимальное количество ходов и времени !
-      </p>
+        {/* Подзаголовок / описание */}
+        <p className="text-xl xs:text-2xl md:text-3xl font-semibold text-teal-900 text-center max-w-[85%]  sm:max-w-3xl mb-3 leading-[1] ">
+          Добро пожаловать! Соберите все плитки по порядку, используя логику и стратегию.
+          Попробуйте собрать их за минимальное количество ходов и времени !
+        </p>
 
-      {/* Кнопка начать игру */}
-      <button
-        className={`${baseBtn} ${tealBtn} cursor-pointer`}
-        onClick={() => navigate("/game")}
-      >
-        Начать игру
-      </button>
+        {/* Кнопка начать игру */}
+        <button
+          className={`${baseBtn} ${tealBtn} cursor-pointer`}
+          onClick={() => navigate("/game")}
+        >
+         <span className="leading-[1]">Начать игру</span>
+        </button>
+
+      </div>
 
       {/* Подпись разработчика */}
-      <span className="text-[1rem] md:text-[1.125rem] text-teal-900">
+      <span className="text-[1rem] md:text-[1.125rem] text-teal-900 mt-5">
         Разработано{" "}
         <Link
           className="text-teal-600 uppercase font-semibold"
@@ -69,6 +72,7 @@ export default function Home() {
           EcomSys.ru
         </Link>
       </span>
+
 
     </div>
   );

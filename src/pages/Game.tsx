@@ -218,7 +218,7 @@ export default function Game() {
       {/* Header */}
       <nav
         className="relative flex items-center flex-wrap justify-center bg-gradient-to-r from-teal-500 via-teal-600 to-teal-700 border border-teal-600/40 shadow-[0_0.625rem_1.25rem_rgba(0,0,0,0.25),0_0.25rem_0.375rem_rgba(0,0,0,0.15)]
-    px-3 lg:px-6 py-4 mb-5 rounded-[2.5rem] gap-3 max-w-3xl mx-auto w-full
+    px-3 lg:px-6 py-4 mb-6 sm:mb-5 rounded-[2.5rem] gap-3 max-w-3xl mx-auto w-full
     md:justify-evenly lg:gap-6">
 
        {/* на главную */}

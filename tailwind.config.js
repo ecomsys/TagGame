@@ -4,7 +4,14 @@ module.exports = {
     content: ["./src/**/*.{js,ts,jsx,tsx}"],
 
     safelist: [
-        "font-inter",
+        "bg-[#a6c792]",
+        "h-[100dvh]",
+        "overflow-y-auto",
+        "overflow-hidden",
+        "m-0",
+        "inset-0",
+        "z-1",
+        "bg-teal-400",
 
         "xs:block",
         "sm:block",
