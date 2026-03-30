@@ -16,17 +16,39 @@ export default function Home() {
   `;
 
   return (
-    <div className="h-full flex flex-col items-center justify-start gap-8 pt-20 px-4 ">
-      
+    <div className="h-screen flex flex-col items-center justify-center gap-8 px-4 ">
+
+      {/* на игровой портал */}
+      <a
+        href="https://games.ecomsys.ru"
+        className="
+          cursor-pointer
+          fixed top-4 xs:top-8 left-8
+          w-[5rem] h-[5rem]
+          rounded-full
+          flex items-center justify-center
+          bg-white/20 backdrop-blur-md
+          border border-white/30
+          shadow-lg
+          hover:bg-white/30 hover:scale-105
+          text-white  hover:text-teal-800
+          transition
+        "
+      >
+        <svg className="w-[3.4375rem] h-[3.4375rem]">
+          <use xlinkHref={`${import.meta.env.BASE_URL}sprite/sprite.svg#back`} />
+        </svg>
+      </a>
+
       {/* Заголовок */}
       <h1 className="text-6xl md:text-7xl font-extrabold text-teal-800 text-center leading-tight">
-        Пятнашка
+        Пятнашки
       </h1>
 
       {/* Подзаголовок / описание */}
       <p className="text-2xl md:text-3xl font-semibold text-teal-900 text-center max-w-3xl">
-        Добро пожаловать! Соберите все плитки по порядку, используя логику и стратегию.  
-        Попробуйте собрать их за минимальное количество ходов и время!
+        Добро пожаловать! Соберите все плитки по порядку, используя логику и стратегию.
+        Попробуйте собрать их за минимальное количество ходов и времени !
       </p>
 
       {/* Кнопка начать игру */}
@@ -36,7 +58,7 @@ export default function Home() {
       >
         Начать игру
       </button>
-    
+
       {/* Подпись разработчика */}
       <span className="text-[1rem] md:text-[1.125rem] text-teal-900">
         Разработано{" "}

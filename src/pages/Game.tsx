@@ -48,7 +48,6 @@ export default function Game() {
     ? userSession.games.find((g) => g.id === userSession.currentGameId)
     : undefined;
 
-  console.log(userSession);
 
   const tiles = currentGame?.tiles ?? [];
   const moves = currentGame?.movesCount ?? 0;
@@ -203,7 +202,6 @@ export default function Game() {
     if (userSession) saveCurrentGameId();
   }, [userSession, saveCurrentGameId]);
 
-  console.log(initialized, "-", currentGame)
 
   /* ==== ==== ==== Loader пока игра инициализируется ==== ==== ==== */
   if (!initialized || !currentGame) {
@@ -220,8 +218,15 @@ export default function Game() {
       {/* Header */}
       <nav
         className="relative flex items-center flex-wrap justify-center bg-gradient-to-r from-teal-500 via-teal-600 to-teal-700 border border-teal-600/40 shadow-[0_0.625rem_1.25rem_rgba(0,0,0,0.25),0_0.25rem_0.375rem_rgba(0,0,0,0.15)]
-    px-3 lg:px-6 py-4 mb-5 rounded-[2.5rem] gap-3 max-w-3xl mx-auto
-    lg:justify-between lg:gap-6">
+    px-3 lg:px-6 py-4 mb-5 rounded-[2.5rem] gap-3 max-w-3xl mx-auto w-full
+    md:justify-evenly lg:gap-6">
+
+       {/* на главную */}
+        <NavLink to="/home" title="На главную">
+          <svg className="w-[3.25rem] h-[3.25rem] text-white transition-all duration-200 hover:scale-110 hover:text-yellow-400">
+            <use xlinkHref={`${import.meta.env.BASE_URL}sprite/sprite.svg#home`} />
+          </svg>
+        </NavLink>
 
         {/* новая игра */}
         <button
@@ -236,7 +241,7 @@ export default function Game() {
           onClick={startNewGame}
         >
           <svg className="w-[3.25rem] h-[3.25rem] text-white group-hover:text-yellow-400 transition-colors">
-            <use xlinkHref={`/sprite/sprite.svg#refresh`} />
+            <use xlinkHref={`${import.meta.env.BASE_URL}sprite/sprite.svg#refresh`} />
           </svg>
         </button>
 
@@ -253,16 +258,16 @@ export default function Game() {
           onClick={shuffleSmart}
         >
           <svg className="w-[3.25rem] h-[3.25rem] text-white group-hover:text-yellow-400 transition-colors">
-            <use xlinkHref={`/sprite/sprite.svg#shuffle`} />
+            <use xlinkHref={`${import.meta.env.BASE_URL}sprite/sprite.svg#shuffle`} />
           </svg>
         </button>
 
         {/* ходы */}
-        <div className="flex items-center gap-3 px-4 py-2 rounded-3xl bg-blue-800/40 shadow-inner border border-blue-600/30">
-          <svg className="w-[2.5rem] h-[2.5rem] text-white">
-            <use xlinkHref={`/sprite/sprite.svg#footprints`} />
+        <div className="flex items-center gap-[0.625rem] lg:gap-5 px-4 py-2 rounded-3xl bg-blue-800/40 shadow-inner border border-blue-600/30">
+          <svg className="w-[2.5rem] h-[2.5rem] lg:w-[3rem] lg:h-[3rem] text-white">
+            <use xlinkHref={`${import.meta.env.BASE_URL}sprite/sprite.svg#footprints`} />
           </svg>
-          <span className="font-extrabold text-[1.75rem] text-white min-w-[1.875rem]">
+          <span className="font-extrabold text-[1.875rem] lg:text-[2.225rem] leading-[1] text-white min-w-[1.875rem]">
             {moves}
           </span>
         </div>
@@ -270,19 +275,12 @@ export default function Game() {
         {/* таймер */}
         <div className="px-4 py-2 rounded-3xl bg-blue-800/40 shadow-inner border border-blue-600/30">
           <Timer time={localTime} />
-        </div>
-
-        {/* рекорды */}
-        <NavLink to="/leaderboard" title="Таблица рекордов">
-          <svg className="w-[3.25rem] h-[3.25rem] text-white transition-all duration-200 hover:scale-110 hover:text-yellow-400">
-            <use xlinkHref="/sprite/sprite.svg#trophy" />
-          </svg>
-        </NavLink>
+        </div>       
 
         {/* инфо */}
         <NavLink to="/rules" title="Правила игры">
           <svg className="w-[3.25rem] h-[3.25rem] text-white transition-all duration-200 hover:scale-110 hover:text-yellow-400">
-            <use xlinkHref="/sprite/sprite.svg#info" />
+            <use xlinkHref={`${import.meta.env.BASE_URL}sprite/sprite.svg#info`} />
           </svg>
         </NavLink>
       </nav>

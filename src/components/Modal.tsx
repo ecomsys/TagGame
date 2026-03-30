@@ -20,7 +20,7 @@ const Modal: FC<ModalProps> = ({ moves, time, onRestart }) => {
       setConfetti(true);
     })
 
-    const audio = new Audio("/audio/win.mp3");
+    const audio = new Audio("/games/taggame/audio/win.mp3");
     audio.play().catch(() => { });
   }, []);
 
@@ -50,7 +50,7 @@ const Modal: FC<ModalProps> = ({ moves, time, onRestart }) => {
           {/* Заголовок */}
           <div className="flex flex-col items-center gap-3">
             <svg className="w-[3.75rem] h-[3.75rem]">
-              <use xlinkHref="/sprite/sprite.svg#trophy" />
+              <use xlinkHref={`${import.meta.env.BASE_URL}sprite/sprite.svg#trophy`} />
             </svg>
             <span className="text-4xl md:text-5xl font-extrabold text-white text-center drop-shadow-lg">
               Победа!

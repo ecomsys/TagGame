@@ -21,7 +21,7 @@ const Board: FC<BoardProps> = ({ tiles, onMove, isGameOver }) => {
 
   // --- Ссылка на аудио ---
   const moveSound = useRef<HTMLAudioElement>(
-    typeof Audio !== "undefined" ? new Audio("/audio/move.mp3") : null,
+    typeof Audio !== "undefined" ? new Audio("/games/taggame/audio/move.mp3") : null,
   );
 
   const moves = currentGame?.movesCount ?? 0;

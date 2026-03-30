@@ -1,13 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="/games/taggame/favicon.png" />
     <!-- MOBILE VIEWPORT -->
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />    
+    />
 
     <script>
       window.addEventListener("DOMContentLoaded", () => {
@@ -40,18 +42,78 @@
       });
     </script>
 
-    <!-- ОСНОВНОЙ SEO --> 
-     <title>Пятнашка от EcomSys</title>
-    <meta name="description" content="Игра в пятнашки" />
-    <meta name="keywords" content="Пятнашка, Tag Game" />
-    <meta name="author" content="EcomSys" />
+    <!-- ОСНОВНОЙ SEO -->
+    <title>Пятнашки — играть онлайн бесплатно (15 Puzzle)</title>
+
+    <meta
+      name="description"
+      content="Играй в пятнашки (15 puzzle) онлайн бесплатно в браузере. Классическая головоломка: расставь числа по порядку. Без регистрации, на телефоне и ПК."
+    />
+
+    <meta
+      name="keywords"
+      content="пятнашки, 15 puzzle, игра пятнашки, головоломка 15, sliding puzzle, игра 15 онлайн, пятнашки играть бесплатно"
+    />
+
+    <meta name="author" content="Ecomsys Games" />
     <meta name="robots" content="index, follow" />
-    
+
+    <!-- THEME COLOR -->
+    <meta name="theme-color" content="#3ba7ff" />
+    <meta name="msapplication-navbutton-color" content="#3ba7ff" />
+
+    <!-- iOS PWA -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Пятнашки" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-touch-fullscreen" content="yes" />
+
+    <!-- Android PWA -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="full-screen" content="yes" />
+    <meta name="screen-orientation" content="portrait" />
+
+    <!-- OPEN GRAPH -->
+    <meta
+      property="og:title"
+      content="Пятнашки (15 Puzzle) — играй онлайн бесплатно"
+    />
+    <meta
+      property="og:description"
+      content="Классическая игра пятнашки: собери числа от 1 до 15. Играй прямо в браузере без регистрации."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://games.ecomsys.ru/games/taggame" />
+    <meta
+      property="og:image"
+      content="https://games.ecomsys.ru/games/taggame/preview.png"
+    />
+    <meta property="og:site_name" content="15 Puzzle" />
+
+    <!-- TWITTER -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Пятнашки — играй онлайн бесплатно" />
+    <meta
+      name="twitter:description"
+      content="Собери числа от 1 до 15. Классическая головоломка прямо в браузере."
+    />
+    <meta
+      name="twitter:image"
+      content="https://games.ecomsys.ru/games/taggame/preview.png"
+    />
+
+    <!-- CANONICAL -->
+    <link rel="canonical" href="https://games.ecomsys.ru/games/taggame" />
+
+    <!-- PWA -->
+    <link rel="manifest" href="/games/taggame/manifest.json" />
   </head>
 
   <body class="min-h-screen">
     <div id="root"></div>
-
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -5,6 +5,7 @@ import path from "path";
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/games/taggame/",
   plugins: [tailwindcss(), react()],
   resolve: {
     alias: {
@@ -17,7 +18,6 @@ export default defineConfig({
       strict: false, // разрешаем доступ к файловой системе
     },
     host: true, // разрешаем все хосты
-    strictPort: true,
-    allowedHosts: ["tag.wtemu.ru"],
+    strictPort: true   
   },
 });

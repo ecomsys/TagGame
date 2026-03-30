@@ -1,73 +1,92 @@
-# React + TypeScript + Vite
+# EcomSys
+# Схема проекта "Пятнашки". Самописная простая игра на React Create App + Tailwind
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+checkers/
+├── .npm/
+│   ├── fonts.js          # конвертацияя шрифтов в woff2
+│   ├── svg.js            # создание спрайтов svg
+│   └── webp.js           # конвертация из png в webp
+│
+├── node_modules           # зависимости npm
+│     └── ...
+│
+├── public/
+│   ├── fonts           # шрифты
+│   ├── icons           # иконки
+│   ├── audio           # звуки
+│   ├── images          # изображения
+│   ├── .htaccess       # настройки для apache
+│   ├── favicon.ico     # фавикон
+│   └── ...             
+│
+├── src/              
+│   ├── app              # провайдер, роутер и обвертка для анимации
+│   ├── components       # layouts, sections
+│   ├── pages            # страницы
+│   ├── hooks            # хуки
+│   ├── stores           # хук для взаимодействия с воркером
+│   ├── types            # swiper.d.ts, types.ts
+│   ├── styles           # стили
+│   ├── ui               # мелкие елементы интерфейса
+│   └── main.tsx         # точка входа
+│
+├── .gitignore           # игнор для git
+├── index.html           # главный файл 
+├── tailwind.config.js   # настройки tailwind
+├── package.json         # зависимости
+├── convert.php          # конвертер rem/px всех файлов проекта
+├── vite.config.ts       # конфиг для vite  
+└── ...
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Список обязательных условий для организации игрового портала со вложенностью на сервере Apache
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 1
+В провайдере для роутера нужно указать basename, чтобы пути не ломались
+```javascript
+ return (
+    <BrowserRouter basename="/games/taggame">
+      <div className={`app ${visible ? "app--visible" : ""}`}>
+        <AppRouter />
+      </div>
+    </BrowserRouter>
+  );
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+# 2
+В vite.config.ts обязательно чтобы пути чанков у билда не ломались
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```javascript
+export default defineConfig({
+  base: "/games/taggame/",
+  ...
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+
+# 3
+Чтобы пути к ресурсам не ломались бери из переменной vite
+```javascript
+<img src={`${import.meta.env.BASE_URL}icons/icon.png`} alt="icon" />
+
+<svg className="w-[55px] h-[55px]">
+    <use xlinkHref={`${import.meta.env.BASE_URL}/icons/sprite/sprite.svg#back`} />
+</svg>
+```
+
+# 4
+Для apache нужен вот такой .htaccess
+
+```bash
+RewriteEngine On
+
+# Игнорируем реальные файлы и папки
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Игнорируем статические ассеты Vite
+RewriteCond %{REQUEST_URI} !^/games/taggame/assets/
+RewriteCond %{REQUEST_URI} !^/games/taggame/static/
+
+# Всё остальное → index.html (SPA fallback)
+RewriteRule ^ /games/taggame/index.html [L]
 ```
